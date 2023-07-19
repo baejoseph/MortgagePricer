@@ -68,7 +68,7 @@ discount_rate = st.slider('Discounting rate:', 0.2, 9.9, 4.5,0.1, format="%f%%")
 n1 = MortgageProduct(loan, term, rate, discount_rate)
 
 st.subheader(f"With a loan of £{round(n1.get_loan()):,},")
-st.subheader(f"paying over {n1.get_term()} years at {n1.get_rates():.1f}% fixed interest,")
+st.subheader(f"paying over {n1.get_term()} years at {n1.get_rate():.1f}% fixed interest,")
 st.subheader(f"the monthly payment is £{int(n1.monthly_payments()):,} (total amount paid: £{int(n1.total_cashflows()):,})")
 st.subheader(f"Assuming a constant discount rate of {n1.get_discount_rate():.1f}%,")
 st.subheader(f"Total discounted payment is £{int(n1.total_discounted_cashflows()):,}")
