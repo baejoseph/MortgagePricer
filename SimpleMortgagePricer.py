@@ -35,7 +35,7 @@ class MortgageProduct:
   def set_rate(self, value):
     self._rate = value
   def get_rate(self):
-    return self._raten
+    return self._rate
   
   def set_discount_rate(self, value):
     self._discount_rate = value
