@@ -69,9 +69,17 @@ n1 = MortgageProduct(loan, term, rate, discount_rate)
 
 st.subheader(f"With a loan of £{round(n1.get_loan()):,},")
 st.subheader(f"paying over {n1.get_term()} years at {n1.get_rate():.1f}% fixed interest,")
-st.subheader(f"the monthly payment is £{int(n1.monthly_payments()):,} (total amount paid: £{int(n1.total_cashflows()):,})")
+st.subheader(f"the monthly payment is £{int(n1.monthly_payments()):,} (total amount paid: £{int(n1.total_cashflows()):,}).")
 st.subheader(f"Assuming a constant discount rate of {n1.get_discount_rate():.1f}%,")
-st.subheader(f"Total discounted payment is £{int(n1.total_discounted_cashflows()):,}")
-
-st.subheader(f"Value of mortgage product is £{int(n1.total_discounted_cashflows())-round(n1.get_loan()):,}")
+st.subheader(f"Total discounted payment is £{int(n1.total_discounted_cashflows()):,}.")
+add_vertical_space()
+pd = st.slider('Lifetime Probability of default:', 0, 10, 0,1, format="%d%%")
+lgd = st.slider('Loss given default:', 0, 0.1*loan, 200,1, format="£%d")
+add_vertical_space()
+pc = st.slider('Lifetime Probability of closure:', 0, 80, 0,1, format="%d%%")
+lgc = st.slider('Loss/charge given closure:', -round(0.01*loan), round(0.01*loan), 0,1, format="£%d")
+add_vertical_space()
+value = int(n1.total_discounted_cashflows())-round(n1.get_loan())
+value = -pd*lgd + -pc*lgc + (100-pd-pc)*value
+st.subheader(f"Value of mortgage product is £{round(value/100):,}.")
 
