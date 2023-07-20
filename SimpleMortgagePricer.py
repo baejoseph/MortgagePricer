@@ -77,7 +77,7 @@ pd = st.slider('Lifetime Probability of default:', 0, 10, 0,1, format="%d%%")
 lgd = st.slider('Loss given default:', 1e2, 1e5, 2e2,1e2, format="£%d")
 add_vertical_space()
 pc = st.slider('Lifetime Probability of closure:', 0, 80, 0,1, format="%d%%")
-lgc = st.slider('Loss/charge given closure:', -1e4, 1e4, 0,1, format="£%d")
+lgc = st.slider('Loss/charge given closure:', -1e4, 1e4, 1e2,1e2, format="£%d")
 add_vertical_space()
 value = int(n1.total_discounted_cashflows())-round(n1.get_loan())
 value = -pd*lgd + -pc*lgc + (100-pd-pc)*value
