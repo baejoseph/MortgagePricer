@@ -1,3 +1,6 @@
+import numpy as np
+import numpy_financial as npf
+
 class InterestRates:
   """A class to capture interest rate info"""
   def __init__(self, **kwargs):
